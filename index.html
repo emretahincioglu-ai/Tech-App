@@ -128,4 +128,10 @@ function render(){
  document.querySelectorAll('.tabbar button').forEach(b=>b.classList.toggle('on',b.dataset.s===screen));
  document.querySelectorAll('.sheet button[data-s]').forEach(b=>b.classList.toggle('on',b.dataset.s===screen));
 }
-document.getElementById('mbtn').onclick=()=>document.getElementById('menu').classL
+document.getElementById('mbtn').onclick=()=>document.getElementById('menu').classList.add('on');
+document.getElementById('menu').onclick=e=>{if(e.target.id==='menu')document.getElementById('menu').classList.remove('on');};
+document.querySelectorAll('.tabbar button[data-s]').forEach(b=>b.onclick=()=>{screen=b.dataset.s;render();});
+document.querySelectorAll('.sheet button[data-s]').forEach(b=>b.onclick=()=>{screen=b.dataset.s;document.getElementById('menu').classList.remove('on');render();});
+(function(){var sel=document.getElementById('tcsel');if(sel){sel.innerHTML=techs.map(function(t){return '<option value="'+t+'">'+t+'</option>';}).join('');sel.value=tech;sel.onchange=function(){tech=sel.value;document.getElementById('menu').classList.remove('on');render();};}})();
+render();
+</script></body></html>
